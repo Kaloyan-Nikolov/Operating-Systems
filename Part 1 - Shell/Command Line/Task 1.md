@@ -16,6 +16,6 @@ The answer is: 2
 
 Решение:
 
-`
+```sh
 echo "The answer is: $(cat philip-j-fry.txt | egrep "[02468]" | egrep -v "[a-w]" | wc -l )"
-`
+```
