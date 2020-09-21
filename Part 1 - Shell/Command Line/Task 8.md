@@ -32,12 +32,12 @@ Vaska Kichukova:/home/SI/s855287
 
 ```sh
 cat /etc/passwd | egrep "^[^:]+:[^:]+:[^:]+:$(cat /etc/passwd | cut -d ":" -f 3,4 \
-| sort -t ":" -nk1 | head -n 5 | tail -n 1 | cut -d ":" -f 2):" | cut -d ":" -f 5,6 | sed -E "s/,.*:/:/"
+| sort -t ":" -nk1 | head -n 5 | tail -n 1 | cut -d ":" -f 2):" | cut -d ":" -f 5,6 | sed -E "s/,.*:/:/" | sort -t "/" -k4
 ```
 
 Решение 2:
 
 ```sh
 cat /etc/passwd | egrep "^s[0-9]+:x:[0-9]+:"$(cat /etc/passwd | sort -t ":" -nk3 \
-| head -n 5 | tail -n 1 | cut -d ":" -f 4)":" | awk 'BEGIN{ FS="[:,]"}{print $5":"$(NF-1)}'
+| head -n 5 | tail -n 1 | cut -d ":" -f 4)":" | awk 'BEGIN{ FS="[:,]"}{print $5":"$(NF-1)}' | sort -t "/" -k4
 ```
